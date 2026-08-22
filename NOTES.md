@@ -206,3 +206,4 @@ The code is clean, typed, and linted. Push to GitHub for deployment on Vercel. V
 - [x] ATS-Standard Bilingual CV in English (`/cv-en.html`) and Indonesian (`/cv-id.html`) with print-to-PDF styles
 - [x] Integrated "View CV" / "Unduh CV" action buttons in Hero and Navigation Header
 - [x] Floating Back to Top Starlight Button (`[ ↑ ]`) with smooth scroll and hover bloom
+

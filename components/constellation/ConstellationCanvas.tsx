@@ -13,7 +13,7 @@ interface Star {
   baseOpacity: number;
   pulseSpeed: number;
   pulsePhase: number;
-  layer: 1 | 2 | 3; // 1: micro, 2: mid, 3: foreground
+  layer: 1 | 2 | 3; // 1: micro, 2: mid, 3: foreground node
   glow: boolean;
 }
 
@@ -52,46 +52,46 @@ interface CancerNode {
 }
 
 const CONFIG = {
-  // Star counts
-  microStarCount: 100,
-  midStarCount: 50,
-  nodeStarCount: 35,
+  // Star counts (scaled by viewport area)
+  microStarCount: 110,
+  midStarCount: 60,
+  nodeStarCount: 46, // Enhanced for prominent desktop constellations
 
-  // Constellation lines
-  connectionDistance: 150,
-  lineMinOpacity: 0.03,
-  lineMaxOpacity: 0.16,
-  lineWidth: 0.6,
+  // Constellation lines (prominent visibility)
+  connectionDistance: 175,
+  lineMinOpacity: 0.08,
+  lineMaxOpacity: 0.32,
+  lineWidth: 0.85,
 
-  // Mouse interaction
-  mouseRadius: 190,
-  mouseGlowIntensity: 0.7,
-  mouseLineWidth: 0.9,
+  // Pointer interaction (mouse & touch)
+  mouseRadius: 220,
+  mouseGlowIntensity: 0.85,
+  mouseLineWidth: 1.1,
 
   // Colors
-  starColor: "220, 225, 245",
-  nodeColor: "196, 181, 253", // soft lavender #C4B5FD
-  lineColor: "180, 167, 214", // #B4A7D6
-  mouseLineColor: "216, 201, 255",
-  meteorColor: "245, 240, 255", // brilliant starlight white-lavender
-  meteorGlowColor: "180, 167, 214",
-  cancerColor: "216, 180, 254", // vibrant celestial violet
+  starColor: "225, 230, 250",
+  nodeColor: "216, 201, 255", // Soft Radiant Lavender
+  lineColor: "196, 181, 253", // #C4B5FD
+  mouseLineColor: "230, 220, 255",
+  meteorColor: "250, 245, 255", // Brilliant starlight white-lavender
+  meteorGlowColor: "196, 181, 253",
+  cancerColor: "216, 180, 254", // Vibrant celestial violet
 
   // Nebulae
   nebulae: [
-    { x: 0.2, y: 0.25, radius: 460, color: "42, 22, 65", opacity: 0.045 },
-    { x: 0.8, y: 0.65, radius: 440, color: "22, 30, 70", opacity: 0.04 },
-    { x: 0.5, y: 0.85, radius: 380, color: "35, 18, 55", opacity: 0.035 },
+    { x: 0.2, y: 0.25, radius: 520, color: "46, 24, 72", opacity: 0.055 },
+    { x: 0.8, y: 0.65, radius: 480, color: "26, 34, 80", opacity: 0.05 },
+    { x: 0.5, y: 0.85, radius: 420, color: "38, 20, 60", opacity: 0.04 },
   ],
 };
 
-// Cancer constellation normalized coordinates (in 0..1 bounding box in upper right)
+// Cancer constellation normalized coordinates (in 0..1 bounding box in upper right sky)
 const CANCER_NODES: CancerNode[] = [
-  { relX: 0.72, relY: 0.18, name: "Tegmine (ζ)", radius: 2.2 },
-  { relX: 0.76, relY: 0.22, name: "Asellus Borealis (γ)", radius: 2.4 },
-  { relX: 0.75, relY: 0.27, name: "Asellus Australis (δ)", radius: 2.5 },
-  { relX: 0.70, relY: 0.32, name: "Acubens (α)", radius: 2.6 },
-  { relX: 0.80, relY: 0.34, name: "Altarf (β)", radius: 2.8 },
+  { relX: 0.72, relY: 0.18, name: "Tegmine (ζ)", radius: 2.4 },
+  { relX: 0.76, relY: 0.22, name: "Asellus Borealis (γ)", radius: 2.6 },
+  { relX: 0.75, relY: 0.27, name: "Asellus Australis (δ)", radius: 2.7 },
+  { relX: 0.70, relY: 0.32, name: "Acubens (α)", radius: 2.8 },
+  { relX: 0.80, relY: 0.34, name: "Altarf (β)", radius: 3.0 },
 ];
 
 const CANCER_EDGES = [
@@ -103,11 +103,11 @@ const CANCER_EDGES = [
 
 // Praesepe Beehive Cluster (M44) stars between Aselli
 const PRAESEPE_STARS = [
-  { relX: 0.755, relY: 0.245, r: 1.1 },
-  { relX: 0.758, relY: 0.250, r: 0.9 },
-  { relX: 0.752, relY: 0.253, r: 1.0 },
-  { relX: 0.757, relY: 0.256, r: 0.8 },
-  { relX: 0.751, relY: 0.242, r: 1.2 },
+  { relX: 0.755, relY: 0.245, r: 1.2 },
+  { relX: 0.758, relY: 0.250, r: 1.0 },
+  { relX: 0.752, relY: 0.253, r: 1.1 },
+  { relX: 0.757, relY: 0.256, r: 0.9 },
+  { relX: 0.751, relY: 0.242, r: 1.3 },
 ];
 
 export const ConstellationCanvas = () => {
@@ -143,12 +143,12 @@ export const ConstellationCanvas = () => {
       let angle: number;
 
       if (customTarget) {
-        // Shoot towards clicked coordinate
-        startX = customTarget.x + (Math.random() > 0.5 ? 200 : -200);
-        startY = customTarget.y - 250;
+        // Shoot towards touched/clicked coordinate
+        startX = customTarget.x + (Math.random() > 0.5 ? 180 : -180);
+        startY = customTarget.y - 240;
         angle = Math.atan2(customTarget.y - startY, customTarget.x - startX);
       } else {
-        // Natural diagonal streak from top/right to bottom/left
+        // Natural diagonal streak
         const fromRight = Math.random() > 0.35;
         angle = fromRight
           ? Math.PI * 0.72 + (Math.random() - 0.5) * 0.2 // ~130 deg
@@ -161,7 +161,7 @@ export const ConstellationCanvas = () => {
       }
 
       const speed = 9 + Math.random() * 8;
-      const length = 140 + Math.random() * 160;
+      const length = 150 + Math.random() * 170;
 
       meteorsRef.current.push({
         x: startX,
@@ -172,11 +172,11 @@ export const ConstellationCanvas = () => {
         speed,
         angle,
         opacity: 0,
-        maxOpacity: 0.85 + Math.random() * 0.15,
+        maxOpacity: 0.88 + Math.random() * 0.12,
         life: 0,
         maxLife: 45 + Math.random() * 35,
-        width: 2.0 + Math.random() * 1.2,
-        headRadius: 2.5 + Math.random() * 1.2,
+        width: 2.2 + Math.random() * 1.2,
+        headRadius: 2.6 + Math.random() * 1.2,
         color: CONFIG.meteorColor,
       });
     },
@@ -186,7 +186,7 @@ export const ConstellationCanvas = () => {
   // Trigger starfall cascade on Moon click
   const triggerMoonStarfall = useCallback(() => {
     setActiveEasterEgg("moon");
-    moonGlowMultiplierRef.current = 2.5;
+    moonGlowMultiplierRef.current = 2.8;
 
     const w = window.innerWidth;
     const h = window.innerHeight;
@@ -195,7 +195,7 @@ export const ConstellationCanvas = () => {
     for (let i = 0; i < 6; i++) {
       setTimeout(() => {
         spawnMeteorInstance(w, h);
-      }, i * 180);
+      }, i * 160);
     }
 
     setTimeout(() => {
@@ -206,24 +206,27 @@ export const ConstellationCanvas = () => {
   const initStars = useCallback((width: number, height: number) => {
     const area = width * height;
     const baseArea = 1920 * 1080;
-    const scale = Math.sqrt(area / baseArea);
+    const isMobile = width < 768;
+    const scale = Math.max(0.65, Math.sqrt(area / baseArea));
 
     const microCount = Math.round(CONFIG.microStarCount * scale);
     const midCount = Math.round(CONFIG.midStarCount * scale);
-    const nodeCount = Math.round(CONFIG.nodeStarCount * scale);
+    const nodeCount = isMobile
+      ? Math.round(CONFIG.nodeStarCount * 0.6)
+      : Math.round(CONFIG.nodeStarCount * scale);
 
     const stars: Star[] = [];
 
-    // Layer 1
-    for (let i = 0; i < Math.min(microCount, 160); i++) {
+    // Layer 1 - Micro Background Stars
+    for (let i = 0; i < Math.min(microCount, 180); i++) {
       stars.push({
         x: Math.random() * width,
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * 0.04,
         vy: (Math.random() - 0.5) * 0.04,
         radius: 0.4 + Math.random() * 0.45,
-        opacity: 0.2 + Math.random() * 0.4,
-        baseOpacity: 0.2 + Math.random() * 0.4,
+        opacity: 0.22 + Math.random() * 0.4,
+        baseOpacity: 0.22 + Math.random() * 0.4,
         pulseSpeed: 0.008 + Math.random() * 0.015,
         pulsePhase: Math.random() * Math.PI * 2,
         layer: 1,
@@ -231,16 +234,16 @@ export const ConstellationCanvas = () => {
       });
     }
 
-    // Layer 2
-    for (let i = 0; i < Math.min(midCount, 80); i++) {
+    // Layer 2 - Mid Stars
+    for (let i = 0; i < Math.min(midCount, 90); i++) {
       stars.push({
         x: Math.random() * width,
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * 0.08,
         vy: (Math.random() - 0.5) * 0.08,
-        radius: 0.85 + Math.random() * 0.55,
-        opacity: 0.35 + Math.random() * 0.4,
-        baseOpacity: 0.35 + Math.random() * 0.4,
+        radius: 0.9 + Math.random() * 0.6,
+        opacity: 0.4 + Math.random() * 0.4,
+        baseOpacity: 0.4 + Math.random() * 0.4,
         pulseSpeed: 0.006 + Math.random() * 0.012,
         pulsePhase: Math.random() * Math.PI * 2,
         layer: 2,
@@ -248,16 +251,16 @@ export const ConstellationCanvas = () => {
       });
     }
 
-    // Layer 3
-    for (let i = 0; i < Math.min(nodeCount, 50); i++) {
+    // Layer 3 - Constellation Major Nodes (Extra Prominent)
+    for (let i = 0; i < Math.min(nodeCount, 60); i++) {
       stars.push({
         x: Math.random() * width,
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * 0.12,
         vy: (Math.random() - 0.5) * 0.12,
-        radius: 1.5 + Math.random() * 0.8,
-        opacity: 0.6 + Math.random() * 0.35,
-        baseOpacity: 0.6 + Math.random() * 0.35,
+        radius: 1.8 + Math.random() * 1.0,
+        opacity: 0.7 + Math.random() * 0.3,
+        baseOpacity: 0.7 + Math.random() * 0.3,
         pulseSpeed: 0.005 + Math.random() * 0.01,
         pulsePhase: Math.random() * Math.PI * 2,
         layer: 3,
@@ -294,41 +297,70 @@ export const ConstellationCanvas = () => {
     resize();
     window.addEventListener("resize", resize);
 
-    const onMouseMove = (e: MouseEvent) => {
+    const updatePointerPos = (clientX: number, clientY: number) => {
       if (!mouseRef.current) {
         mouseRef.current = {
-          x: e.clientX,
-          y: e.clientY,
-          targetX: e.clientX,
-          targetY: e.clientY,
+          x: clientX,
+          y: clientY,
+          targetX: clientX,
+          targetY: clientY,
         };
       } else {
-        mouseRef.current.targetX = e.clientX;
-        mouseRef.current.targetY = e.clientY;
+        mouseRef.current.targetX = clientX;
+        mouseRef.current.targetY = clientY;
       }
+    };
+
+    const onMouseMove = (e: MouseEvent) => {
+      updatePointerPos(e.clientX, e.clientY);
     };
 
     const onMouseLeave = () => {
       mouseRef.current = null;
     };
 
-    // Click on canvas to summon shooting star or trigger Moon
-    const onClick = (e: MouseEvent) => {
+    // Touch event handlers for mobile devices
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        updatePointerPos(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    };
+
+    const onTouchEnd = () => {
+      mouseRef.current = null;
+    };
+
+    // Click / Tap on canvas to summon shooting star or trigger Moon
+    const handleTap = (clientX: number, clientY: number) => {
       const w = window.innerWidth;
       const h = window.innerHeight;
-      const moonX = w * 0.88;
+      const moonX = w * (w < 768 ? 0.82 : 0.88);
       const moonY = h * 0.12;
-      const moonDist = Math.hypot(e.clientX - moonX, e.clientY - moonY);
+      const moonDist = Math.hypot(clientX - moonX, clientY - moonY);
 
       if (moonDist < 45) {
         triggerMoonStarfall();
       } else {
-        spawnMeteorInstance(w, h, { x: e.clientX, y: e.clientY });
+        spawnMeteorInstance(w, h, { x: clientX, y: clientY });
+      }
+    };
+
+    const onClick = (e: MouseEvent) => {
+      handleTap(e.clientX, e.clientY);
+    };
+
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        updatePointerPos(e.touches[0].clientX, e.touches[0].clientY);
+        handleTap(e.touches[0].clientX, e.touches[0].clientY);
       }
     };
 
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("mouseleave", onMouseLeave);
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
+    window.addEventListener("touchend", onTouchEnd, { passive: true });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
     window.addEventListener("click", onClick);
 
     const width = () => window.innerWidth;
@@ -358,9 +390,10 @@ export const ConstellationCanvas = () => {
     const drawMoon = () => {
       const w = width();
       const h = height();
-      const moonX = w * 0.88;
+      const isMobile = w < 768;
+      const moonX = w * (isMobile ? 0.82 : 0.88);
       const moonY = h * 0.12;
-      const moonRadius = 18;
+      const moonRadius = isMobile ? 15 : 18;
       const glowMul = moonGlowMultiplierRef.current;
 
       // Outer Moonlight Halo
@@ -372,8 +405,8 @@ export const ConstellationCanvas = () => {
         moonY,
         moonRadius * 4.5 * glowMul
       );
-      moonHalo.addColorStop(0, `rgba(224, 215, 255, ${0.22 * glowMul})`);
-      moonHalo.addColorStop(0.5, `rgba(180, 167, 214, ${0.08 * glowMul})`);
+      moonHalo.addColorStop(0, `rgba(224, 215, 255, ${0.24 * glowMul})`);
+      moonHalo.addColorStop(0.5, `rgba(180, 167, 214, ${0.09 * glowMul})`);
       moonHalo.addColorStop(1, "rgba(180, 167, 214, 0)");
       ctx.beginPath();
       ctx.arc(moonX, moonY, moonRadius * 4.5 * glowMul, 0, Math.PI * 2);
@@ -386,19 +419,19 @@ export const ConstellationCanvas = () => {
       ctx.arc(moonX, moonY, moonRadius, 0, Math.PI * 2);
       ctx.fillStyle = "#EAE4F8";
       ctx.shadowColor = "rgba(224, 215, 255, 0.9)";
-      ctx.shadowBlur = 12 * glowMul;
+      ctx.shadowBlur = 14 * glowMul;
       ctx.fill();
 
       // Cutout to form elegant Crescent Moon
       ctx.globalCompositeOperation = "destination-out";
       ctx.beginPath();
-      ctx.arc(moonX - 7, moonY - 5, moonRadius * 0.92, 0, Math.PI * 2);
+      ctx.arc(moonX - (isMobile ? 6 : 7), moonY - (isMobile ? 4 : 5), moonRadius * 0.92, 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
 
       // Moon shimmer spark
       ctx.beginPath();
-      ctx.arc(moonX + 8, moonY - 6, 1.2, 0, Math.PI * 2);
+      ctx.arc(moonX + (isMobile ? 6 : 8), moonY - (isMobile ? 5 : 6), 1.2, 0, Math.PI * 2);
       ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
       ctx.fill();
     };
@@ -425,15 +458,15 @@ export const ConstellationCanvas = () => {
         ctx.moveTo(p1.x, p1.y);
         ctx.lineTo(p2.x, p2.y);
         ctx.strokeStyle = isRevealed
-          ? "rgba(216, 180, 254, 0.65)"
-          : "rgba(180, 167, 214, 0.12)";
-        ctx.lineWidth = isRevealed ? 1.4 : 0.6;
+          ? "rgba(216, 180, 254, 0.7)"
+          : "rgba(196, 181, 253, 0.18)";
+        ctx.lineWidth = isRevealed ? 1.6 : 0.8;
         ctx.stroke();
 
         if (isRevealed) {
           // Extra starlight glow on lines
-          ctx.shadowColor = "rgba(216, 180, 254, 0.8)";
-          ctx.shadowBlur = 8;
+          ctx.shadowColor = "rgba(216, 180, 254, 0.85)";
+          ctx.shadowBlur = 10;
           ctx.stroke();
           ctx.shadowBlur = 0;
         }
@@ -447,7 +480,7 @@ export const ConstellationCanvas = () => {
         ctx.arc(sx, sy, s.r, 0, Math.PI * 2);
         ctx.fillStyle = isRevealed
           ? "rgba(245, 240, 255, 0.95)"
-          : "rgba(196, 181, 253, 0.35)";
+          : "rgba(196, 181, 253, 0.4)";
         ctx.fill();
       }
 
@@ -455,7 +488,7 @@ export const ConstellationCanvas = () => {
       for (const node of nodes) {
         ctx.beginPath();
         ctx.arc(node.x, node.y, isRevealed ? node.radius * 1.5 : node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = isRevealed ? "#F3E8FF" : "rgba(196, 181, 253, 0.75)";
+        ctx.fillStyle = isRevealed ? "#F3E8FF" : "rgba(216, 201, 255, 0.85)";
         ctx.fill();
 
         // Node radiant halo
@@ -465,25 +498,25 @@ export const ConstellationCanvas = () => {
           0,
           node.x,
           node.y,
-          isRevealed ? 16 : 8
+          isRevealed ? 18 : 10
         );
-        halo.addColorStop(0, isRevealed ? "rgba(216, 180, 254, 0.6)" : "rgba(180, 167, 214, 0.2)");
+        halo.addColorStop(0, isRevealed ? "rgba(216, 180, 254, 0.65)" : "rgba(196, 181, 253, 0.3)");
         halo.addColorStop(1, "rgba(180, 167, 214, 0)");
         ctx.beginPath();
-        ctx.arc(node.x, node.y, isRevealed ? 16 : 8, 0, Math.PI * 2);
+        ctx.arc(node.x, node.y, isRevealed ? 18 : 10, 0, Math.PI * 2);
         ctx.fillStyle = halo;
         ctx.fill();
       }
 
       // If revealed, draw ♋ astrological symbol & label
       if (isRevealed) {
-        const centerX = nodes[2].x - 30;
+        const centerX = Math.max(20, nodes[2].x - 30);
         const centerY = nodes[2].y - 30;
-        ctx.font = "bold 20px monospace";
-        ctx.fillStyle = "rgba(216, 180, 254, 0.85)";
+        ctx.font = "bold 18px monospace";
+        ctx.fillStyle = "rgba(216, 180, 254, 0.9)";
         ctx.fillText("♋ CANCER", centerX, centerY);
         ctx.font = "11px monospace";
-        ctx.fillStyle = "rgba(200, 190, 230, 0.6)";
+        ctx.fillStyle = "rgba(200, 190, 230, 0.7)";
         ctx.fillText("Praesepe M44 Cluster", centerX, centerY + 16);
       }
     };
@@ -619,8 +652,8 @@ export const ConstellationCanvas = () => {
           m.y,
           m.headRadius * 4.5
         );
-        halo.addColorStop(0, `rgba(${CONFIG.meteorGlowColor}, ${m.opacity * 0.5})`);
-        halo.addColorStop(0.6, `rgba(${CONFIG.meteorGlowColor}, ${m.opacity * 0.15})`);
+        halo.addColorStop(0, `rgba(${CONFIG.meteorGlowColor}, ${m.opacity * 0.55})`);
+        halo.addColorStop(0.6, `rgba(${CONFIG.meteorGlowColor}, ${m.opacity * 0.18})`);
         halo.addColorStop(1, "rgba(180, 167, 214, 0)");
         ctx.beginPath();
         ctx.arc(m.x, m.y, m.headRadius * 4.5, 0, Math.PI * 2);
@@ -656,14 +689,14 @@ export const ConstellationCanvas = () => {
 
         if (star.glow || glowBoost > 0.15) {
           ctx.beginPath();
-          ctx.arc(star.x, star.y, star.radius * 2.6, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${CONFIG.lineColor}, ${finalOpacity * 0.12})`;
+          ctx.arc(star.x, star.y, star.radius * 2.8, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${CONFIG.lineColor}, ${finalOpacity * 0.18})`;
           ctx.fill();
         }
       }
     };
 
-    // Draw constellation lines
+    // Draw constellation lines (Prominent Desktop Geometric Web)
     const drawConstellationLines = () => {
       const nodes = starsRef.current.filter((s) => s.layer === 3);
 
@@ -691,13 +724,13 @@ export const ConstellationCanvas = () => {
       }
     };
 
-    // Draw interactive mouse constellation connections
-    const drawMouseConnections = () => {
+    // Draw interactive pointer constellation connections (mouse & touch)
+    const drawPointerConnections = () => {
       const mouse = mouseRef.current;
       if (!mouse) return;
 
-      mouse.x += (mouse.targetX - mouse.x) * 0.14;
-      mouse.y += (mouse.targetY - mouse.y) * 0.14;
+      mouse.x += (mouse.targetX - mouse.x) * 0.18;
+      mouse.y += (mouse.targetY - mouse.y) * 0.18;
 
       for (const star of starsRef.current) {
         if (star.layer === 1) continue;
@@ -707,7 +740,7 @@ export const ConstellationCanvas = () => {
         const dist = Math.hypot(dx, dy);
 
         if (dist < CONFIG.mouseRadius) {
-          const alpha = 0.25 * (1 - dist / CONFIG.mouseRadius);
+          const alpha = 0.32 * (1 - dist / CONFIG.mouseRadius);
 
           ctx.beginPath();
           ctx.moveTo(mouse.x, mouse.y);
@@ -718,27 +751,27 @@ export const ConstellationCanvas = () => {
         }
       }
 
-      // Cursor radiant aura
+      // Cursor / Touch radiant aura
       const gradient = ctx.createRadialGradient(
         mouse.x,
         mouse.y,
         0,
         mouse.x,
         mouse.y,
-        15
+        18
       );
-      gradient.addColorStop(0, `rgba(${CONFIG.mouseLineColor}, 0.45)`);
-      gradient.addColorStop(0.5, `rgba(${CONFIG.mouseLineColor}, 0.12)`);
+      gradient.addColorStop(0, `rgba(${CONFIG.mouseLineColor}, 0.5)`);
+      gradient.addColorStop(0.5, `rgba(${CONFIG.mouseLineColor}, 0.15)`);
       gradient.addColorStop(1, "rgba(196, 181, 253, 0)");
 
       ctx.beginPath();
-      ctx.arc(mouse.x, mouse.y, 15, 0, Math.PI * 2);
+      ctx.arc(mouse.x, mouse.y, 18, 0, Math.PI * 2);
       ctx.fillStyle = gradient;
       ctx.fill();
 
       // Center starlight dot
       ctx.beginPath();
-      ctx.arc(mouse.x, mouse.y, 1.8, 0, Math.PI * 2);
+      ctx.arc(mouse.x, mouse.y, 2.0, 0, Math.PI * 2);
       ctx.fillStyle = "#FFFFFF";
       ctx.fill();
     };
@@ -760,7 +793,7 @@ export const ConstellationCanvas = () => {
       drawMeteors();
       drawConstellationLines();
       drawStars();
-      drawMouseConnections();
+      drawPointerConnections();
 
       animFrameRef.current = requestAnimationFrame(animate);
     };
@@ -772,6 +805,9 @@ export const ConstellationCanvas = () => {
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseleave", onMouseLeave);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
+      window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("click", onClick);
     };
   }, [initStars, spawnMeteorInstance, triggerMoonStarfall]);
@@ -780,7 +816,7 @@ export const ConstellationCanvas = () => {
     <>
       <canvas
         ref={canvasRef}
-        className="fixed inset-0 z-0 pointer-events-auto cursor-crosshair"
+        className="fixed inset-0 z-0 pointer-events-auto cursor-crosshair touch-none"
         style={{ background: "#07070d" }}
         aria-hidden="true"
         title="Celestial Sky — Click to summon a shooting star or click the Moon"

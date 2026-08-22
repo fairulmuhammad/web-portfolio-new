@@ -39,13 +39,13 @@ export const Projects = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6 }}
-      className="py-32 px-4"
+      className="py-20 sm:py-28 md:py-32 px-4 sm:px-6"
     >
       <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-4 sm:gap-6">
           <div>
             <motion.h2
-              className="text-4xl md:text-5xl font-bold text-white"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-white"
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.1 }}
@@ -55,8 +55,8 @@ export const Projects = () => {
             </motion.h2>
           </div>
 
-          {/* Minimalist Filter Pill Group */}
-          <div className="flex flex-wrap gap-2 p-1 bg-dark-800/80 border border-white/[0.08] rounded-xl backdrop-blur-sm">
+          {/* Minimalist Filter Pill Group with horizontal scroll for narrow screens */}
+          <div className="flex items-center overflow-x-auto no-scrollbar py-1 px-1 bg-dark-800/80 border border-white/[0.08] rounded-xl backdrop-blur-sm -mx-2 sm:mx-0 max-w-full">
             {(["featured", "all", "application", "learning", "experiment"] as FilterType[]).map((filter) => {
               const count =
                 filter === "featured"
@@ -73,7 +73,7 @@ export const Projects = () => {
                 <button
                   key={filter}
                   onClick={() => setActiveFilter(filter)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-1.5 ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
                     isSelected
                       ? "bg-accent text-dark-900 font-semibold shadow-[0_0_12px_rgba(180,167,214,0.4)]"
                       : "text-gray-400 hover:text-white hover:bg-dark-700/50"
@@ -83,7 +83,7 @@ export const Projects = () => {
                   <span
                     className={`text-[10px] px-1.5 py-0.2 rounded-full ${
                       isSelected
-                        ? "bg-dark-900/20 text-dark-900"
+                        ? "bg-dark-900/20 text-dark-900 font-bold"
                         : "bg-dark-700 text-gray-400"
                     }`}
                   >
@@ -95,7 +95,7 @@ export const Projects = () => {
           </div>
         </div>
 
-        <motion.div layout className="grid md:grid-cols-2 gap-8">
+        <motion.div layout className="grid md:grid-cols-2 gap-6 sm:gap-8">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
               <motion.div
