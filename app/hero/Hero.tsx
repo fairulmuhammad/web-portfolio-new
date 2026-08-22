@@ -12,6 +12,7 @@ const Hero = () => {
   });
 
   const { language } = useLanguage();
+  const cvHref = language === "id" ? "/cv-id.html" : "/cv-en.html";
 
   return (
     <motion.section
@@ -77,7 +78,7 @@ const Hero = () => {
         </motion.p>
 
         <motion.div
-          className="mt-10 flex gap-4 justify-center"
+          className="mt-10 flex flex-wrap gap-4 justify-center items-center"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.35 }}
@@ -93,6 +94,15 @@ const Hero = () => {
             className="shooting-star-hover px-6 py-3 border border-white/[0.15] bg-dark-800/40 text-gray-200 rounded-lg hover:border-accent hover:text-accent backdrop-blur-sm transition-colors"
           >
             {uiTranslations.hero.aboutCta[language]}
+          </a>
+          <a
+            href={cvHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shooting-star-hover px-6 py-3 border border-accent/40 bg-accent/10 text-accent font-medium rounded-lg hover:bg-accent/20 hover:border-accent transition-all flex items-center gap-1.5 font-mono text-sm"
+          >
+            <span>{language === "id" ? "Unduh CV" : "View CV"}</span>
+            <span>↗</span>
           </a>
         </motion.div>
 

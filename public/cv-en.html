@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muhammad Fairul - Software Engineer CV</title>
+  <meta name="description" content="Curriculum Vitae of Muhammad Fairul Imron Jalayasi - Software Engineer (Backend & DevOps)">
+  <style>
+    :root {
+      --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-heading: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --color-text: #1a1a1a;
+      --color-muted: #555555;
+      --color-link: #2b4c7e;
+      --color-border: #e0e0e0;
+      --color-primary: #111827;
+    }
+
+    @page {
+      size: A4;
+      margin: 12mm 14mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 10pt;
+      line-height: 1.4;
+      color: var(--color-text);
+      background: #f5f5f7;
+      padding: 20px;
+    }
+
+    .cv-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 32px 36px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-radius: 4px;
+    }
+
+    .no-print-toolbar {
+      max-width: 800px;
+      margin: 0 auto 16px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      background: #1e1e2a;
+      color: #e0d7ff;
+      border-radius: 6px;
+      font-size: 9pt;
+      font-family: monospace;
+    }
+
+    .btn {
+      background: #b4a7d6;
+      color: #07070d;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 9pt;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn:hover {
+      background: #e0d7ff;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #e0d7ff;
+      border: 1px solid rgba(180, 167, 214, 0.4);
+      margin-left: 8px;
+    }
+
+    /* Header */
+    header {
+      border-bottom: 1.5pt solid var(--color-primary);
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: 20pt;
+      font-weight: 700;
+      color: var(--color-primary);
+      letter-spacing: -0.5px;
+      margin-bottom: 2px;
+      text-transform: uppercase;
+    }
+
+    .tagline {
+      font-size: 11pt;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 6px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 16px;
+      font-size: 9pt;
+      color: var(--color-muted);
+    }
+
+    .contact-info a {
+      color: var(--color-link);
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-size: 11pt;
+      font-weight: 700;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1pt solid var(--color-border);
+      padding-bottom: 2px;
+      margin-bottom: 8px;
+    }
+
+    .summary p {
+      font-size: 9.5pt;
+      line-height: 1.45;
+      color: #2b2b2b;
+      text-align: justify;
+    }
+
+    /* Experience & Projects Items */
+    .item {
+      margin-bottom: 10px;
+    }
+
+    .item:last-child {
+      margin-bottom: 0;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    .item-title {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .item-company {
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .item-date {
+      font-size: 9pt;
+      color: var(--color-muted);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .item-sub {
+      font-size: 9pt;
+      color: #4b5563;
+      font-style: italic;
+      margin-bottom: 3px;
+    }
+
+    ul.bullet-list {
+      padding-left: 16px;
+      margin-top: 3px;
+    }
+
+    ul.bullet-list li {
+      font-size: 9.2pt;
+      line-height: 1.4;
+      color: #333333;
+      margin-bottom: 2.5px;
+    }
+
+    .tech-stack {
+      font-size: 8.5pt;
+      color: #4b5563;
+      margin-top: 2px;
+    }
+
+    .tech-stack strong {
+      color: #1f2937;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 4px 12px;
+      font-size: 9pt;
+    }
+
+    .skill-category {
+      font-weight: 700;
+      color: #374151;
+    }
+
+    .skill-list {
+      color: #1f2937;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+
+      .no-print-toolbar {
+        display: none !important;
+      }
+
+      .cv-container {
+        padding: 0;
+        box-shadow: none;
+        max-width: 100%;
+      }
+
+      a {
+        text-decoration: none;
+        color: #111827;
+      }
+
+      h2 {
+        page-break-after: avoid;
+      }
+
+      .item {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="no-print-toolbar">
+    <div>
+      <span>📄 ATS Standard Format (English)</span>
+    </div>
+    <div>
+      <a href="/cv-id.html" class="btn btn-secondary">🇮🇩 Bahasa Indonesia</a>
+      <button onclick="window.print()" class="btn">🖨️ Print / Save as PDF</button>
+      <a href="/" class="btn btn-secondary">← Back to Portfolio</a>
+    </div>
+  </div>
+
+  <div class="cv-container">
+    <header>
+      <h1>Muhammad Fairul Imron Jalayasi</h1>
+      <div class="tagline">Software Engineer &mdash; Backend &amp; DevOps</div>
+      <div class="contact-info">
+        <span>📍 Yogyakarta, Indonesia</span>
+        <span>✉️ <a href="mailto:muhammadfairul13@gmail.com">muhammadfairul13@gmail.com</a></span>
+        <span>🌐 <a href="https://fairulmuhammad.vercel.app">fairulmuhammad.vercel.app</a></span>
+        <span>💻 <a href="https://github.com/fairulmuhammad">github.com/fairulmuhammad</a></span>
+        <span>💼 <a href="https://www.linkedin.com/in/muhammad-fairul-b5aa37312/">linkedin.com/in/muhammad-fairul</a></span>
+      </div>
+    </header>
+
+    <!-- Professional Summary -->
+    <section class="summary">
+      <h2>Professional Summary</h2>
+      <p>
+        Detail-oriented Software Engineer specializing in backend architecture, role-based workflows, containerization, and automated CI/CD pipelines. Experienced in designing resilient web systems with Laravel, Python, Docker, and cloud tooling. Proven track record building enterprise news CMS platforms with strict 9-state editorial workflows, audit logging, multi-environment deployments (FrankenPHP/Octane), and hands-on self-hosted server infrastructure.
+      </p>
+    </section>
+
+    <!-- Technical Skills -->
+    <section>
+      <h2>Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-category">Backend &amp; APIs:</div>
+        <div class="skill-list">PHP (Laravel 12, Filament, CodeIgniter), Python (FastAPI, Flask), Node.js (Express), REST APIs, JWT, RBAC</div>
+
+        <div class="skill-category">DevOps &amp; Cloud:</div>
+        <div class="skill-list">Docker, Docker Compose, Kubernetes, CI/CD (GitHub Actions, Jenkins), systemd, Tailscale, Cloudflare</div>
+
+        <div class="skill-category">Databases:</div>
+        <div class="skill-list">MySQL 8.0, Redis 7, SQLite, Firebase Firestore, Eager Loading (N+1 Optimization), Fulltext Indexing</div>
+
+        <div class="skill-category">Testing &amp; Monitoring:</div>
+        <div class="skill-list">Pest, PHPUnit, Jest, Prometheus, Grafana, Loki, SonarQube, Trivy, k6 Load Testing</div>
+
+        <div class="skill-category">Frontend &amp; Languages:</div>
+        <div class="skill-list">TypeScript, JavaScript, HTML5/Blade, Tailwind CSS, React, Next.js, React Native (Expo)</div>
+      </div>
+    </section>
+
+    <!-- Work Experience -->
+    <section>
+      <h2>Work Experience</h2>
+
+      <div class="item">
+        <div class="item-header">
+          <div class="item-title">Software Engineer (Intern) <span class="item-company">&mdash; RBTV Jogja (Radio Republik Televisi)</span></div>
+          <div class="item-date">Oct 2025 &ndash; Jun 2026</div>
+        </div>
+        <div class="item-sub">Yogyakarta, Indonesia</div>
+        <ul class="bullet-list">
+          <li>Architected and developed <strong>Kabar Jogja</strong>, a high-throughput news portal CMS with a 9-state policy-gated editorial workflow (Writer &rarr; Supervisor Review &rarr; Redaktur Final Decision &rarr; Publish/Archive).</li>
+          <li>Engineered granular Role-Based Access Control (RBAC) with 17 permissions, policy-level enforcement, and automated transition audit logging.</li>
+          <li>Built multi-container production environment using Docker Compose with FrankenPHP worker mode and Laravel Octane for high concurrency and low latency.</li>
+          <li>Eliminated N+1 database performance bottlenecks via eager loading and fulltext indexing; authored 34 comprehensive feature, unit, security, and performance test suites using Pest and PHPUnit.</li>
+          <li>Integrated multi-language support (EN/ID), 2FA authentication (Filament Breezy), ad analytics, and read-completion tracking endpoints.</li>
+        </ul>
+        <div class="tech-stack"><strong>Technologies:</strong> Laravel 12, Filament 4.8, PHP 8.2/8.4, MySQL 8, Redis 7, Docker, FrankenPHP, Laravel Octane, Tailwind CSS, Pest, GitHub Actions</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div class="item-title">Head of Operations <span class="item-company">&mdash; Vyber.id</span></div>
+          <div class="item-date">2022 &ndash; 2024</div>
+        </div>
+        <div class="item-sub">Yogyakarta, Indonesia</div>
+        <ul class="bullet-list">
+          <li>Supervised operational workflows, technical services delivery, server uptime, and cross-functional team coordination.</li>
+          <li>Managed DNS routing, hosting environments, and customer integration pipelines, improving response times and issue resolution rates.</li>
+        </ul>
+        <div class="tech-stack"><strong>Technologies:</strong> Linux Server Administration, Web Infrastructure, Project Management, Operational Workflows</div>
+      </div>
+    </section>
+
+    <!-- Key Engineering Projects -->
+    <section>
+      <h2>Key Engineering Projects</h2>
+
+      <div class="item">
+        <div class="item-header">
+          <div class="item-title">Internship Progress Tracker <span class="item-company">&mdash; Web &amp; Mobile App</span></div>
+          <div class="item-date">2025 &ndash; 2026</div>
+        </div>
+        <ul class="bullet-list">
+          <li>Built a cross-platform task logging and journal tracker featuring a modular vanilla JavaScript web dashboard and an Expo React Native mobile companion app.</li>
+          <li>Implemented Firebase Auth with Google Sign-In, multi-provider account merging, Firestore real-time synchronization, and push notifications.</li>
+          <li>Automated build validation and deployment via GitHub Actions (hosted live on GitHub Pages).</li>
+        </ul>
+        <div class="tech-stack"><strong>Technologies:</strong> JavaScript, Firebase (Auth &amp; Firestore), React Native, Expo SDK, Zustand, GitHub Actions</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div class="item-title">Test-Learn-DevOps &amp; Self-Hosted Homelab Infrastructure</div>
+          <div class="item-date">2025 &ndash; 2026</div>
+        </div>
+        <ul class="bullet-list">
+          <li>Created and completed an 8-module DevOps learning laboratory executed directly on a live Ubuntu server environment.</li>
+          <li>Built a full CI/CD deployment pipeline with GitHub Actions executing deployments via a systemd-managed self-hosted runner and Docker Compose.</li>
+          <li>Configured secure remote access with Tailscale Funnel, Cloudflare Tunnels, and system resource observability.</li>
+        </ul>
+        <div class="tech-stack"><strong>Technologies:</strong> Python, Flask, Docker, GitHub Actions, systemd, Tailscale, Linux, Bash</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div class="item-title">DevOps Microservice &amp; Kubernetes Inventory App (UAS Project)</div>
+          <div class="item-date">2025</div>
+        </div>
+        <ul class="bullet-list">
+          <li>Developed an automated inventory microservice with full CI/CD, automated security audits (Trivy, Bandit, SonarQube), and Kubernetes deployment manifests.</li>
+          <li>Configured Prometheus metrics scraping, Grafana dashboards, and Loki log aggregation for real-time observability.</li>
+        </ul>
+        <div class="tech-stack"><strong>Technologies:</strong> Python, Flask, Docker, Kubernetes (Minikube), Prometheus, Grafana, Loki, GitHub Actions</div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section>
+      <h2>Education</h2>
+      <div class="item">
+        <div class="item-header">
+          <div class="item-title">Universitas Amikom Yogyakarta</div>
+          <div class="item-date">2023 &ndash; 2026</div>
+        </div>
+        <div class="item-sub">Associate Degree (D3) in Informatics Engineering (Teknik Informatika)</div>
+        <ul class="bullet-list">
+          <li><strong>Focus:</strong> Software Engineering, Database Systems, Computer Networks, and DevOps Infrastructure.</li>
+          <li><strong>Final Thesis:</strong> Design and Implementation of News Portal CMS with Policy-Based RBAC and Editorial State Workflow.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+</body>
+</html>

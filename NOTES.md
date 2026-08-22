@@ -199,3 +199,10 @@ The code is clean, typed, and linted. Push to GitHub for deployment on Vercel. V
 - [x] Soft Lavender (`#B4A7D6`) accent & deep space palette across all components
 - [x] Complete bilingual support (English & Bahasa Indonesia) with `[ EN | ID ]` header switcher
 - [x] Starlight hover glows on cards, timeline nodes, and action buttons
+- [x] Active Section Scrollspy (wayfinding glowing star dot in desktop header)
+- [x] Mobile Navigation Drawer with backdrop blur and section links
+- [x] Interactive Project Category & Archive Filter (`[ Featured | All (5) | Applications | DevOps | Experiments ]`)
+- [x] Celestial Section Divider lines with pulsing starlight nodes
+- [x] ATS-Standard Bilingual CV in English (`/cv-en.html`) and Indonesian (`/cv-id.html`) with print-to-PDF styles
+- [x] Integrated "View CV" / "Unduh CV" action buttons in Hero and Navigation Header
+- [x] Floating Back to Top Starlight Button (`[ ↑ ]`) with smooth scroll and hover bloom
