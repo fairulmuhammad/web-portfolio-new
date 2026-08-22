@@ -2,7 +2,8 @@
 
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import { projects } from "@/data";
+import { projects, uiTranslations } from "@/data";
+import { useLanguage } from "@/context/LanguageContext";
 import { ProjectCard } from "./ProjectCard";
 
 const Projects = () => {
@@ -11,6 +12,7 @@ const Projects = () => {
     threshold: 0.1,
   });
 
+  const { language } = useLanguage();
   const featuredProjects = projects.filter((p) => p.featured);
 
   return (
@@ -30,7 +32,7 @@ const Projects = () => {
           transition={{ duration: 0.5, delay: 0.1 }}
           style={{ fontFamily: "var(--font-inter)" }}
         >
-          Projects
+          {uiTranslations.projects.heading[language]}
         </motion.h2>
         <div className="grid md:grid-cols-2 gap-8">
           {featuredProjects.map((project, index) => (

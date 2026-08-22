@@ -2,7 +2,8 @@
 
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import { experiences } from "@/data";
+import { experiences, uiTranslations } from "@/data";
+import { useLanguage } from "@/context/LanguageContext";
 import { ExperienceCard } from "./ExperienceCard";
 
 const Experience = () => {
@@ -10,6 +11,8 @@ const Experience = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
+
+  const { language } = useLanguage();
 
   return (
     <motion.section
@@ -28,7 +31,7 @@ const Experience = () => {
           transition={{ duration: 0.5, delay: 0.1 }}
           style={{ fontFamily: "var(--font-inter)" }}
         >
-          Experience
+          {uiTranslations.experience.heading[language]}
         </motion.h2>
         <div className="space-y-8">
           {experiences.map((exp, index) => (

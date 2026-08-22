@@ -67,11 +67,10 @@ Edit `data.ts` to update portfolio content — do not modify component files for
 
 ## Design System
 
-- **Accent color:** `#C6FF3D` (lime green)
-- **Background:** Monochrome dark (`#0a0a0a` → `#141414`)
+- **Accent color:** `#B4A7D6` (Soft Lavender)
+- **Background:** Deep space dark (`#07070d` → `#0e0e16`) with interactive constellation canvas & shooting stars
 - **Typography:** Inter (headings/body), JetBrains Mono (labels/metadata)
-- **Visual motif:** Constellation / network node diagrams (thin lines, data-viz style)
-- **No:** gradient blobs, stock images, excessive glassmorphism, terminal cosplay
+- **Visual motif:** Constellation & celestial network (multi-depth starfield, meteors, glowing node cards)
 
 ## Deployment
 

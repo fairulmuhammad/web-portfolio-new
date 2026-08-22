@@ -2,19 +2,19 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       colors: {
-        accent: "#C6FF3D",
+        accent: "#B4A7D6",
         dark: {
-          900: "#0a0a0a",
-          800: "#121212",
-          700: "#1a1a1a",
-          600: "#2a2a2a",
+          900: "#07070d",
+          800: "#0e0e16",
+          700: "#161620",
+          600: "#1e1e2a",
         },
         gray: {
           50: "#fafafa",

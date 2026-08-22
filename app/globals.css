@@ -2,13 +2,14 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Design tokens — monochrome + accent #C6FF3D */
+/* Design tokens — celestial dark + Soft Lavender accent */
 @theme {
-  --color-accent: #C6FF3D;
-  --color-dark-900: #0a0a0a;
-  --color-dark-800: #121212;
-  --color-dark-700: #1a1a1a;
-  --color-dark-600: #2a2a2a;
+  --color-accent: #B4A7D6;
+  --color-accent-light: #E0D7FF;
+  --color-dark-900: #07070d;
+  --color-dark-800: #0e0e16;
+  --color-dark-700: #161620;
+  --color-dark-600: #1e1e2a;
   --color-gray-50: #fafafa;
   --color-gray-100: #f5f5f5;
   --color-gray-200: #e5e5e5;
@@ -38,20 +39,20 @@ html {
 body {
   font-family: var(--font-sans);
   color: #e5e5e5;
-  background-color: #0a0a0a;
+  background-color: #07070d;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* Selection */
 ::selection {
-  background-color: rgba(198, 255, 61, 0.2);
-  color: #C6FF3D;
+  background-color: rgba(180, 167, 214, 0.25);
+  color: #B4A7D6;
 }
 
 /* Focus */
 :focus-visible {
-  outline: 2px solid #C6FF3D;
+  outline: 2px solid #B4A7D6;
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -62,20 +63,80 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #121212;
+  background: #0e0e16;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2a2a2a;
+  background: #1e1e2a;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #404040;
+  background: #2a2a3a;
+}
+
+/* Shooting star hover effect */
+.shooting-star-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.shooting-star-hover::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -100%;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(180, 167, 214, 0.6),
+    rgba(180, 167, 214, 0.9),
+    rgba(180, 167, 214, 0.6),
+    transparent
+  );
+  transform: translateY(-50%) rotate(-15deg);
+  transition: none;
+  pointer-events: none;
+}
+
+.shooting-star-hover:hover::after {
+  animation: shooting-star 0.6s ease-out forwards;
+}
+
+@keyframes shooting-star {
+  0% {
+    left: -100%;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    left: 150%;
+    opacity: 0;
+  }
+}
+
+/* Subtle glow on hover for interactive elements */
+.glow-hover {
+  transition: box-shadow 0.3s ease, text-shadow 0.3s ease;
+}
+
+.glow-hover:hover {
+  text-shadow: 0 0 12px rgba(180, 167, 214, 0.4),
+    0 0 24px rgba(180, 167, 214, 0.15);
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .shooting-star-hover::after {
+    display: none;
+  }
+  .shooting-star-hover:hover::after {
+    animation: none;
   }
 }

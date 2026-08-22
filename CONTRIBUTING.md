@@ -91,13 +91,14 @@ Do not hardcode content inside component files.
 
 ## Design Tokens
 
-Primary accent color: `#C6FF3D`
+Primary accent color: `#B4A7D6` (Soft Lavender)
 
 Custom colors defined in `app/globals.css`:
-- `--color-accent`: #C6FF3D (lime green)
-- `--color-dark-900`: #0a0a0a (near black)
-- `--color-dark-800`: #141414 (dark gray)
-- `--color-gray-400`: #9ca3af (muted text)
+- `--color-accent`: #B4A7D6 (soft lavender)
+- `--color-accent-light`: #E0D7FF (starlight lavender)
+- `--color-dark-900`: #07070d (deep space black)
+- `--color-dark-800`: #0e0e16 (midnight dark)
+- `--color-gray-400`: #a3a3a3 (muted text)
 
 Fonts:
 - `--font-inter`: Inter (headings, body)

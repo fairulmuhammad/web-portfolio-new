@@ -1,7 +1,9 @@
 import type { Metadata, Viewport as NextViewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "@/context/LanguageContext";
 import { SiteLayout } from "@/components/layout/SiteLayout";
+import { ConstellationCanvas } from "@/components/constellation/ConstellationCanvas";
 import { getBuildInfo } from "@/lib/build-info";
 
 const inter = Inter({
@@ -18,7 +20,7 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Fairul | Software Engineer",
+    default: "fairulmuhammad | Software Engineer",
     template: "%s | Fairul",
   },
   description:
@@ -68,7 +70,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: NextViewport = {
-  themeColor: "#0a0a0a",
+  themeColor: "#07070d",
 };
 
 export default function RootLayout({
@@ -89,9 +91,12 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className="bg-dark-900 text-gray-200 antialiased">
-        <SiteLayout buildInfo={buildInfo}>
-          {children}
-        </SiteLayout>
+        <LanguageProvider>
+          <ConstellationCanvas />
+          <SiteLayout buildInfo={buildInfo}>
+            {children}
+          </SiteLayout>
+        </LanguageProvider>
       </body>
     </html>
   );
