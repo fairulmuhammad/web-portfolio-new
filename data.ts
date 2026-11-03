@@ -189,7 +189,6 @@ export const projects: Project[] = [
       "Firestore",
       "Expo SDK 54",
       "React Native",
-      "zustand",
       "GitHub Actions",
     ],
     repositoryUrl: "https://github.com/fairulmuhammad/internship-progres-tracker",
@@ -219,7 +218,6 @@ export const projects: Project[] = [
     category: "learning",
     technologies: [
       "Python",
-      "Flask",
       "Docker",
       "GitHub Actions",
       "systemd",
@@ -252,7 +250,6 @@ export const projects: Project[] = [
     category: "experiment",
     technologies: [
       "Python",
-      "Flask",
       "Docker",
       "GitHub Actions",
       "Kubernetes",
@@ -344,7 +341,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     category: { en: "Backend", id: "Backend" },
-    items: ["Laravel", "FastAPI", "Flask", "Express", "Filament"],
+    items: ["Laravel", "FastAPI", "Express", "Filament"],
   },
   {
     category: { en: "Databases", id: "Basis Data" },
