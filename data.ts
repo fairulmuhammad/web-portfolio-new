@@ -229,8 +229,8 @@ export const projects: Project[] = [
       id: "Mempelajari DevOps secara teori terasa abstrak — pemahaman sejati didapat dari pengoperasian pada infrastruktur nyata dan penyelesaian insiden riil.",
     },
     solution: {
-      en: "Built a hands-on curriculum (Linux → shell → systemd → networking → Docker → CI/CD → monitoring → security) with 8 labs and a capstone. Each module is executed end-to-end on the ubuntu server (1.7 GB RAM) that hosts the entire homelab. The capstone deploys a Flask hello-app with a full CI/CD pipeline: GitHub-hosted runner for CI, self-hosted runner for CD via systemd-managed Docker Compose.",
-      id: "Membangun kurikulum praktik (Linux → shell → systemd → networking → Docker → CI/CD → monitoring → security) dengan 8 lab dan proyek akhir. Tiap modul dijalankan langsung di server Ubuntu (1.7 GB RAM). Proyek akhir menerapkan pipeline CI/CD lengkap untuk aplikasi Flask.",
+      en: "Built a hands-on curriculum (Linux → shell → systemd → networking → Docker → CI/CD → monitoring → security) with 8 labs and a capstone. Each module is executed end-to-end on the ubuntu server (1.7 GB RAM) that hosts the entire homelab. The capstone deploys a web app with a full CI/CD pipeline: GitHub-hosted runner for CI, self-hosted runner for CD via systemd-managed Docker Compose.",
+      id: "Membangun kurikulum praktik (Linux → shell → systemd → networking → Docker → CI/CD → monitoring → security) dengan 8 lab dan proyek akhir. Tiap modul dijalankan langsung di server Ubuntu (1.7 GB RAM). Proyek akhir menerapkan pipeline CI/CD lengkap untuk aplikasi web.",
     },
     result: {
       en: "All 8 modules and labs completed. The OOM incident during the Docker lab — mysqld killed by the kernel under memory pressure — was documented as a troubleshooting case. Self-hosted runner is registered and active; capstone deploy is green.",
@@ -261,8 +261,8 @@ export const projects: Project[] = [
       id: "Proyek akhir akademik (UAS) yang mendemonstrasikan toolchain DevOps lengkap: CI, security scanning, monitoring, logging, dan orkestrasi kontainer.",
     },
     solution: {
-      en: "Built a Python/Flask inventory API with a GitHub Actions pipeline that runs build, tests, security scans (Trivy, Bandit, SonarQube), and deploys to a Kubernetes cluster. Configured Prometheus/Grafana for metrics and Loki for log aggregation. Wrote k8s manifests for the deployment.",
-      id: "Membangun API inventaris Python/Flask dengan pipeline GitHub Actions untuk build, pengujian, pemindaian keamanan (Trivy, Bandit, SonarQube), dan deployment ke klaster Kubernetes. Mengonfigurasi Prometheus/Grafana untuk metrik dan Loki untuk agregasi log.",
+      en: "Built a Python inventory API with a GitHub Actions pipeline that runs build, tests, security scans (Trivy, Bandit, SonarQube), and deploys to a Kubernetes cluster. Configured Prometheus/Grafana for metrics and Loki for log aggregation. Wrote k8s manifests for the deployment.",
+      id: "Membangun API inventaris Python dengan pipeline GitHub Actions untuk build, pengujian, pemindaian keamanan (Trivy, Bandit, SonarQube), dan deployment ke klaster Kubernetes. Mengonfigurasi Prometheus/Grafana untuk metrik dan Loki untuk agregasi log.",
     },
     result: {
       en: "Complete toolchain demonstrated. Notable: resolved a Grafana data-source connectivity issue that blocked the dashboards.",
@@ -297,15 +297,15 @@ export const projects: Project[] = [
       id: "Memahami probabilitas permainan peluang lebih intuitif saat matematika di baliknya dapat diamati langsung secara transparan.",
     },
     solution: {
-      en: "Built a FastAPI platform with a slot machine (96% RTP, weighted symbol distribution), blackjack (basic strategy matrix, 0.5% house edge), and European roulette. Added a fraud-detection module using z-score anomaly scoring on betting velocity, win-rate, and stake progression. Dockerized.",
-      id: "Membangun platform FastAPI dengan mesin slot (96% RTP, distribusi bobot simbol), blackjack (matriks strategi dasar, 0.5% house edge), dan roulette Eropa. Menambahkan modul deteksi fraud berbasis skor anomali z-score.",
+      en: "Built a platform with a slot machine (96% RTP, weighted symbol distribution), blackjack (basic strategy matrix, 0.5% house edge), and European roulette. Added a fraud-detection module using z-score anomaly scoring on betting velocity, win-rate, and stake progression. Dockerized.",
+      id: "Membangun platform dengan mesin slot (96% RTP, distribusi bobot simbol), blackjack (matriks strategi dasar, 0.5% house edge), dan roulette Eropa. Menambahkan modul deteksi fraud berbasis skor anomali z-score.",
     },
     result: {
       en: "A working educational platform that demonstrates calibrated RNG, house-edge math, and anomaly detection — all in a single repo.",
       id: "Platform edukasi yang mendemonstrasikan RNG terkalibrasi, kalkulasi house-edge, dan deteksi anomali dalam satu repositori.",
     },
     category: "experiment",
-    technologies: ["Python", "FastAPI", "SQLite", "WebSockets", "Docker"],
+    technologies: ["Python", "SQLite", "WebSockets", "Docker"],
     repositoryUrl: "https://github.com/fairulmuhammad/gamble",
     featured: false,
     year: "2025",
@@ -398,7 +398,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     category: { en: "Backend", id: "Backend" },
-    items: ["Laravel", "FastAPI", "Express", "Filament"],
+    items: ["Laravel", "Express", "Filament"],
   },
   {
     category: { en: "Databases", id: "Basis Data" },
