@@ -5,6 +5,7 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import { SiteLayout } from "@/components/layout/SiteLayout";
 import { ConstellationCanvas } from "@/components/constellation/ConstellationCanvas";
 import { getBuildInfo } from "@/lib/build-info";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -97,6 +98,7 @@ export default function RootLayout({
             {children}
           </SiteLayout>
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
