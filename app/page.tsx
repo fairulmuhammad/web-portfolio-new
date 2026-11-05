@@ -1,6 +1,7 @@
 import Hero from "@/app/hero/Hero";
 import About from "@/app/about/About";
 import Experience from "@/app/experience/Experience";
+import Certifications from "@/app/certifications/Certifications";
 import Projects from "@/app/projects/Projects";
 import Skills from "@/app/skills/Skills";
 import Contact from "@/app/contact/Contact";
@@ -14,6 +15,8 @@ export default function Home() {
       <About />
       <SectionDivider />
       <Experience />
+      <SectionDivider />
+      <Certifications />
       <SectionDivider />
       <Projects />
       <SectionDivider />

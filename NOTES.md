@@ -207,3 +207,8 @@ The code is clean, typed, and linted. Push to GitHub for deployment on Vercel. V
 - [x] Integrated "View CV" / "Unduh CV" action buttons in Hero and Navigation Header
 - [x] Floating Back to Top Starlight Button (`[ ↑ ]`) with smooth scroll and hover bloom
 
+
+
+
+new notes
+1. i want upgrade my web portfolio with dashboard thing. what do u think first? so currently all of the content in  the web porfolio are hard coded and i kinda confused if i have something to change from the project that i want to change or if i want to add a section for certification. what do u think if we create a dashboard management content like cms for the web? u can read the current structure first

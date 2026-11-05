@@ -29,6 +29,20 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         </div>
         <p className="text-gray-300 text-sm sm:text-base mb-4 leading-relaxed">{project.description[language]}</p>
 
+        {project.images && project.images.length > 0 && (
+          <div className="mb-4 grid grid-cols-2 gap-2">
+            {project.images.slice(0, 4).map((img, idx) => (
+              <div key={idx} className="relative aspect-video overflow-hidden rounded-lg border border-white/[0.06]">
+                <img
+                  src={img}
+                  alt={`${project.title} screenshot ${idx + 1}`}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+            ))}
+          </div>
+        )}
+
         {/* Structured Problem / Solution / Result blocks */}
         {project.problem && (
           <div className="mb-3 p-2.5 sm:p-3 bg-dark-900/40 rounded-lg border border-white/[0.04]">

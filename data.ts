@@ -46,6 +46,7 @@ export interface Project {
   liveUrl?: string;
   featured: boolean;
   year?: string;
+  images?: string[];
 }
 
 export interface Experience {
@@ -59,6 +60,16 @@ export interface Experience {
   technologies?: string[];
 }
 
+export interface Certification {
+  id: string;
+  title: string;
+  issuer: string;
+  date: string;
+  description?: BilingualText;
+  credentialUrl?: string;
+  image?: string;
+}
+
 export interface SkillGroup {
   category: BilingualText;
   items: string[];
@@ -68,6 +79,7 @@ export const uiTranslations = {
   nav: {
     about: { en: "About", id: "Tentang" },
     experience: { en: "Experience", id: "Pengalaman" },
+    certifications: { en: "Certifications", id: "Sertifikasi" },
     projects: { en: "Projects", id: "Proyek" },
     skills: { en: "Skills", id: "Keahlian" },
     contact: { en: "Contact", id: "Kontak" },
@@ -90,6 +102,9 @@ export const uiTranslations = {
   experience: {
     heading: { en: "Experience", id: "Pengalaman" },
     present: { en: "Present", id: "Sekarang" },
+  },
+  certifications: {
+    heading: { en: "Certifications", id: "Sertifikasi" },
   },
   skills: {
     heading: { en: "Skills", id: "Keahlian" },
@@ -162,6 +177,12 @@ export const projects: Project[] = [
     repositoryUrl: "https://github.com/fairulmuhammad/magang-rbtv",
     featured: true,
     year: "2025–2026",
+    images: [
+      "/projects/rbtv-home.png",
+      "/projects/rbtv-draft.png",
+      "/projects/rbtv-published.png",
+      "/projects/rbtv-admin.png",
+    ],
   },
   {
     id: "internship-tracker",
@@ -331,6 +352,42 @@ export const experiences: Experience[] = [
       id: "Mempelajari ilmu komputer dengan fokus rekayasa perangkat lunak, basis data, jaringan, dan DevOps. Proyek Kabar Jogja menjadi dasar penyusunan Tugas Akhir.",
     },
     technologies: [],
+  },
+];
+
+export const certifications: Certification[] = [
+  {
+    id: "git-fundamental",
+    title: "Git Fundamental",
+    issuer: "Dicoding / Git Course",
+    date: "2025",
+    description: {
+      en: "Fundamental Git version control concepts, branching, merging, and collaboration workflows.",
+      id: "Konsep dasar Git version control, branching, merging, dan alur kerja kolaborasi.",
+    },
+    image: "/cert_preview/git-fundamental.png",
+  },
+  {
+    id: "git-mastery-pro",
+    title: "Git Mastery Pro",
+    issuer: "Git Mastery Course",
+    date: "2025",
+    description: {
+      en: "Advanced Git techniques, rebase, cherry-pick, stash, and professional workflows.",
+      id: "Teknik Git tingkat lanjut, rebase, cherry-pick, stash, dan alur kerja profesional.",
+    },
+    image: "/cert_preview/git-mastery-pro.png",
+  },
+  {
+    id: "advance-git-workflow",
+    title: "Advance Git Workflow",
+    issuer: "Git Advanced Course",
+    date: "2025",
+    description: {
+      en: "Advanced Git workflows for team collaboration, pull requests, and release management.",
+      id: "Alur kerja Git tingkat lanjut untuk kolaborasi tim, pull request, dan manajemen rilis.",
+    },
+    image: "/cert_preview/advance-git-workflow.png",
   },
 ];
 

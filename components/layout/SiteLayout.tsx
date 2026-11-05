@@ -14,7 +14,7 @@ interface SiteLayoutProps {
   buildInfo: BuildInfo;
 }
 
-const SECTIONS = ["about", "experience", "projects", "skills", "contact"];
+const SECTIONS = ["about", "experience", "certifications", "projects", "skills", "contact"];
 
 export const SiteLayout = ({
   children,
